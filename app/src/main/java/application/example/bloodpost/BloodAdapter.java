@@ -8,12 +8,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class BloodAdapter extends RecyclerView.Adapter<BloodAdapter.BloodViewHolder>{
     public ArrayList<Person> data;
     public BloodAdapter(ArrayList<Person> l){
-        data=l;
+        this.data=l;
     }
     @NonNull
     @Override
@@ -25,10 +27,14 @@ public class BloodAdapter extends RecyclerView.Adapter<BloodAdapter.BloodViewHol
 
     @Override
     public void onBindViewHolder(@NonNull BloodViewHolder holder, int position) {
-        holder.name.setText("Name: "+data.get(position).getName());
-        holder.email.setText("Email: "+data.get(position).getEmail());
-        holder.phone.setText("Phone: "+data.get(position).getPhone());
-        holder.ad.setText("Address: "+data.get(position).getAddress());
+        String n=data.get(position).getName();
+        String e=data.get(position).getEmail();
+        String p=data.get(position).getPhone();
+        String a=data.get(position).getAddress();
+        holder.name.setText("Name: "+n);
+        holder.email.setText("Email: "+e);
+        holder.phone.setText("Phone: "+p);
+        holder.ad.setText("Address: "+a);
     }
 
     @Override
@@ -43,10 +49,10 @@ public class BloodAdapter extends RecyclerView.Adapter<BloodAdapter.BloodViewHol
 
         public BloodViewHolder(@NonNull View itemView) {
             super(itemView);
-            name=itemView.findViewById(R.id.Name);
-            email=itemView.findViewById(R.id.Email);
-            phone=itemView.findViewById(R.id.Phone);
-            ad=itemView.findViewById(R.id.Address);
+            name=(TextView)itemView.findViewById(R.id.Name);
+            email=(TextView)itemView.findViewById(R.id.Email);
+            phone=(TextView)itemView.findViewById(R.id.Phone);
+            ad=(TextView)itemView.findViewById(R.id.Address);
         }
     }
 }
