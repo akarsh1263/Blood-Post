@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "914320149746",
+    "project_id": "blood-post-f0b43",
+    "storage_bucket": "blood-post-f0b43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914320149746:android:d284bb7b2ba74776f3546b",
+        "android_client_info": {
+          "package_name": "application.example.bloodpost"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "914320149746-ptqi8c76drfms5p41icgsa6umgvqhebt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPb8L3ngZAxJKu5tGgUbZneUluFfm5otA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "914320149746-ptqi8c76drfms5p41icgsa6umgvqhebt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
