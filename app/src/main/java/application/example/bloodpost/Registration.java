@@ -1,5 +1,6 @@
 package application.example.bloodpost;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,9 +11,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class Registration extends AppCompatActivity {
     FirebaseDatabase fd;
@@ -47,11 +51,26 @@ public class Registration extends AppCompatActivity {
         if(p.getAddress().length()==0||sel==-1||p.getEmail().length()==0||p.getName().length()==0||p.getPhone().length()==0)
             Toast.makeText(this,"fill up the information", Toast.LENGTH_LONG).show();
         else{
-            people.push().setValue(p);
-            Intent i=new Intent(this,Records.class);
-            i.putExtra("bp",rb.getText().toString());
-            i.putExtra("mailid",mail.getText().toString());
-            startActivity(i);
+            Query check=qref.orderByChild("email").equalTo(mail.getText().toString());
+            check.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()) {
+                        b = false;
+                        Toast.makeText(Registration.this,"This email id already exists", Toast.LENGTH_LONG).show();
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+            if(b) {
+                people.push().setValue(p);
+                Intent i = new Intent(this, Records.class);
+                i.putExtra("bp", rb.getText().toString());
+                i.putExtra("mailid", mail.getText().toString());
+                startActivity(i);
+            }
         }
     }
 }
